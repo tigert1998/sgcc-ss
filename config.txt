@@ -1,5 +1,5 @@
 ; sfx configuration
-Setup=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File ss\install.ps1
+Setup=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File ss\install.ps1
 Title="Screen Saver Installer"
 Silent=2
 Overwrite=1

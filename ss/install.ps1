@@ -3,7 +3,7 @@ $isAdministrator = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltIn
 $commandPath = $MyInvocation.MyCommand.Path
 
 if (-not $isAdministrator) {
-    $arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$commandPath`""
+    $arguments = "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$commandPath`""
     Start-Process powershell.exe -ArgumentList $arguments -Verb RunAs -Wait
     exit
 }
