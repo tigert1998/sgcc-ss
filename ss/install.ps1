@@ -8,9 +8,11 @@ if (-not $isAdministrator) {
     exit
 }
 
+$scrName = "sgcc_ss.scr"
 $rootPath = Split-Path -Parent $commandPath
-$sourcePath = Join-Path $rootPath "sgcc_ss.scr"
-$destPath = "C:\Windows\System32\sgcc_ss.scr"
+$sourcePath = Join-Path $rootPath $scrName
+New-Item -Path 'C:\sgcc_ss' -ItemType Directory -Force
+$destPath = Join-Path "C:\sgcc_ss" $scrName
 Copy-Item -Path $sourcePath -Destination $destPath -Force
 
 # remove group policies
