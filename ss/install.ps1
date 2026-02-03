@@ -8,9 +8,17 @@ if (-not $isAdministrator) {
     exit
 }
 
-$sourcePath = Join-Path (Split-Path -Parent $commandPath) "screen_saver.scr"
-$destPath = "C:\screen_saver.scr"
+$rootPath = Split-Path -Parent $commandPath
+$sourcePath = Join-Path $rootPath "sgcc_ss.scr"
+$destPath = "C:\Windows\System32\sgcc_ss.scr"
 Copy-Item -Path $sourcePath -Destination $destPath -Force
+
+# remove group policies
+$lgpoPath = Join-Path $rootPath "LGPO.exe"
+$policiesPath = Join-Path $rootPath "policies.txt"
+& $lgpoPath /t $policiesPath
+gpupdate.exe /force
+
 $regPath = "HKCU:\Software\Policies\Microsoft\Windows\Control Panel\Desktop"
 New-Item -Path $regPath -Force
 Set-ItemProperty -Path $regPath -Name "SCRNSAVE.EXE" -Value $destPath
