@@ -11,7 +11,7 @@ if (-not $isAdministrator) {
 $scrName = "sgcc_ss.scr"
 $rootPath = Split-Path -Parent $commandPath
 $sourcePath = Join-Path $rootPath $scrName
-New-Item -Path 'C:\sgcc_ss' -ItemType Directory -Force
+New-Item -Path "C:\sgcc_ss" -ItemType Directory -Force
 $destPath = Join-Path "C:\sgcc_ss" $scrName
 Copy-Item -Path $sourcePath -Destination $destPath -Force
 
@@ -30,3 +30,4 @@ Set-ItemProperty -Path $regPath -Name "ScreenSaveTimeOut" -Value "300"
 
 # delete previous Jiansong's reg
 Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "pb" -ErrorAction SilentlyContinue
+Remove-Item -Path "C:\pb" -Force -Recurse -ErrorAction SilentlyContinue
